@@ -13,9 +13,8 @@ import javax.persistence.UniqueConstraint;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "manufacturer", uniqueConstraints = @UniqueConstraint(name = "uc_driver_car", columnNames = { "driver_id",
-		"car_id" }) )
-public class Manufacturer {
+@Table(name = "manufacturer")
+public class ManufacturerDO {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

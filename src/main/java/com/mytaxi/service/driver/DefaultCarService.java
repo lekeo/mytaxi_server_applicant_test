@@ -1,14 +1,16 @@
 package com.mytaxi.service.driver;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.mytaxi.dataaccessobject.CarRepository;
 import com.mytaxi.domainobject.CarDO;
 import com.mytaxi.exception.EntityNotFoundException;
 
+@Service
 public class DefaultCarService implements CarService {
 	
-	private static org.slf4j.Logger log = LoggerFactory.getLogger(DefaultDriverService.class);
+	private static org.slf4j.Logger log = LoggerFactory.getLogger(DefaultCarService.class);
 
 	private final CarRepository carRepository;
 	

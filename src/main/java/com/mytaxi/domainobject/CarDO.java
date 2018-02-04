@@ -17,51 +17,52 @@ import com.mytaxi.domainvalue.OnlineStatus;
 import com.mytaxi.domainvalue.UsageStatus;
 
 @Entity
-@Table(
-    name = "car"
-)
+@Table(name = "car")
 public class CarDO {
 
 	@Id
-    @GeneratedValue
-    private Long id;
+	@GeneratedValue
+	private Long id;
 
-    @Column(nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private ZonedDateTime dateCreated = ZonedDateTime.now();
+	@Column(nullable = false)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private ZonedDateTime dateCreated = ZonedDateTime.now();
 
-    @Column
-    private Float rating;
+	@Column
+	private Float rating;
 
-    @Column(nullable = false)
-    @NotNull(message = "EngineType can not be null!")
-    private String engineType;
+	@Column(nullable = false)
+	@NotNull(message = "EngineType can not be null!")
+	private String engineType;
 
-    @Column(nullable = false)
-    @NotNull(message = "SeatCount can not be null!")
-    private Integer seatCount;
+	@Column(nullable = false)
+	@NotNull(message = "SeatCount can not be null!")
+	private Integer seatCount;
 
-    @Column
-    private Boolean convertible;
+	@Column
+	private Boolean convertible;
 
-    @Column(nullable = false)
-    @NotNull(message = "licensePlate can not be null!")
-    private String licensePlate;
+	@Column(nullable = false)
+	@NotNull(message = "licensePlate can not be null!")
+	private String licensePlate;
 
-    @Column(nullable = false)
-    @NotNull(message = "manufacturer can not be null!")
-    private String manufacturer;
+	@Column(nullable = false)
+	@NotNull(message = "manufacturer can not be null!")
+	private String manufacturer;
 
-    @Column
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private ZonedDateTime dateUpdated = ZonedDateTime.now();
-	
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private UsageStatus usageStatus;
-    
-    private CarDO() {
-    }
+	@Column(nullable = false)
+	private Boolean deleted = false;
+
+	@Column
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private ZonedDateTime dateUpdated = ZonedDateTime.now();
+
+	@Enumerated(EnumType.STRING)
+	@Column
+	private UsageStatus usageStatus = UsageStatus.AVAILABLE;
+
+	private CarDO() {
+	}
 
 	public CarDO(Float rating, String engineType, Integer seatCount, Boolean convertible, String licensePlate,
 			String manufacturer) {
@@ -71,6 +72,7 @@ public class CarDO {
 		this.convertible = convertible;
 		this.licensePlate = licensePlate;
 		this.manufacturer = manufacturer;
+		this.deleted = false;
 		this.dateCreated = ZonedDateTime.now();
 		this.dateUpdated = ZonedDateTime.now();
 		this.usageStatus = UsageStatus.AVAILABLE;
@@ -147,6 +149,14 @@ public class CarDO {
 		this.dateUpdated = ZonedDateTime.now();
 	}
 
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
+
 	public ZonedDateTime getDateUpdated() {
 		return dateUpdated;
 	}
@@ -163,5 +173,5 @@ public class CarDO {
 		this.usageStatus = usageStatus;
 		this.dateUpdated = ZonedDateTime.now();
 	}
-    
+
 }

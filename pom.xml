@@ -91,7 +91,15 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${io.springfox.springfox-swagger-ui}</version>
         </dependency>
+        
+        <!-- Spring security related dependencies 
 
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+		-->
+		
     </dependencies>
 
     <build>
