@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mytaxi.domainvalue.UsageStatus;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarDTO {
@@ -27,11 +28,14 @@ public class CarDTO {
     @NotNull(message = "manufacturer can not be null!")
     private ManufacturerDTO manufacturer;
     
+    @NotNull(message = "UsageStatus can not be null!")
+    private UsageStatus usageStatus;
+    
     public CarDTO() {
 	}
     
     public CarDTO(Long id, Float rating, String engineType, Integer seatCount, Boolean convertible, String licensePlate,
-    		ManufacturerDTO manufacturer) {
+    		ManufacturerDTO manufacturer, UsageStatus usageStatus) {
 		this.id = id;
 		this.rating = rating;
 		this.engineType = engineType;
@@ -39,6 +43,7 @@ public class CarDTO {
 		this.convertible = convertible;
 		this.licensePlate = licensePlate;
 		this.manufacturer = manufacturer;
+		this.usageStatus = usageStatus;
 	}
     
     public static CarDTOBuilder newBuilder() {
@@ -75,6 +80,10 @@ public class CarDTO {
 		return manufacturer;
 	}
 	
+	public UsageStatus getUsageStatus() {
+		return usageStatus;
+	}
+	
 	public static class CarDTOBuilder {
 		private Long id;
 	    private Float rating;
@@ -82,7 +91,8 @@ public class CarDTO {
 	    private Integer seatCount;
 	    private Boolean convertible;
 	    private String licensePlate;
-	    private ManufacturerDTO manufacturer; 
+	    private ManufacturerDTO manufacturer;
+	    private UsageStatus usageStatus;
 	    
 	    public CarDTOBuilder setId(Long id) {
 	    	this.id = id;
@@ -119,8 +129,13 @@ public class CarDTO {
 	    	return this;
 		}
 		
+		public CarDTOBuilder setUsageStatus(UsageStatus usageStatus) {
+			this.usageStatus = usageStatus;
+			return this;
+		}
+		
 		public CarDTO createCarDTO() {
-			return new CarDTO(id, rating, engineType, seatCount, convertible, licensePlate, manufacturer);
+			return new CarDTO(id, rating, engineType, seatCount, convertible, licensePlate, manufacturer, usageStatus);
 		}
 	    
 	}

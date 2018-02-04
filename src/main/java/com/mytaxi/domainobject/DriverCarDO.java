@@ -34,6 +34,9 @@ public class DriverCarDO {
     @Column(name = "car_id")
     private Long carId;
 
+    public DriverCarDO() {
+    }
+    
 	public Long getId() {
 		return id;
 	}

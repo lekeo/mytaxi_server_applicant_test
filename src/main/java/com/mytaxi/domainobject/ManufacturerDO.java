@@ -36,8 +36,11 @@ public class ManufacturerDO {
 	public ManufacturerDO() {
 	}
 	
-	public ManufacturerDO(String manufacturerName) {
+	public ManufacturerDO(Long id, String manufacturerName) {
+		this.id = id;
 		this.manufacturerName = manufacturerName;
+		this.dateCreated = ZonedDateTime.now();
+		this.dateUpdated = ZonedDateTime.now();
 	}
 
 	public Long getId() {

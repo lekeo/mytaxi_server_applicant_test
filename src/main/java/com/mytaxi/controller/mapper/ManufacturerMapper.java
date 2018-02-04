@@ -6,7 +6,7 @@ import com.mytaxi.domainobject.ManufacturerDO;
 public class ManufacturerMapper {
 
 	public static ManufacturerDO makeManufacturerDO(ManufacturerDTO manufacturerDTO) {
-		return new ManufacturerDO(manufacturerDTO.getManufacturerName());
+		return new ManufacturerDO(manufacturerDTO.getId(), manufacturerDTO.getManufacturerName());
 	}
 	
 	public static ManufacturerDTO makeManufacturerDTO(ManufacturerDO manufacturerDO) {
