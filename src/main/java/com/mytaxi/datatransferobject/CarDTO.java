@@ -25,13 +25,13 @@ public class CarDTO {
     private String licensePlate;
 
     @NotNull(message = "manufacturer can not be null!")
-    private String manufacturer;
+    private ManufacturerDTO manufacturer;
     
     public CarDTO() {
 	}
     
     public CarDTO(Long id, Float rating, String engineType, Integer seatCount, Boolean convertible, String licensePlate,
-			String manufacturer) {
+    		ManufacturerDTO manufacturer) {
 		this.id = id;
 		this.rating = rating;
 		this.engineType = engineType;
@@ -71,7 +71,7 @@ public class CarDTO {
 		return licensePlate;
 	}
 
-	public String getManufacturer() {
+	public ManufacturerDTO getManufacturer() {
 		return manufacturer;
 	}
 	
@@ -82,7 +82,7 @@ public class CarDTO {
 	    private Integer seatCount;
 	    private Boolean convertible;
 	    private String licensePlate;
-	    private String manufacturer; 
+	    private ManufacturerDTO manufacturer; 
 	    
 	    public CarDTOBuilder setId(Long id) {
 	    	this.id = id;
@@ -114,7 +114,7 @@ public class CarDTO {
 	    	return this;
 		}
 
-		public CarDTOBuilder setManufacturer(String manufacturer) {
+		public CarDTOBuilder setManufacturer(ManufacturerDTO manufacturer) {
 			this.manufacturer = manufacturer;
 	    	return this;
 		}

@@ -6,7 +6,7 @@ import com.mytaxi.domainobject.CarDO;
 public class CarMapper {
 
 	public static CarDO makeCarDO(CarDTO carDTO) {
-		return new CarDO(carDTO.getRating(), carDTO.getEngineType(), carDTO.getSeatCount(), carDTO.getConvertible(), carDTO.getLicensePlate(), carDTO.getManufacturer());
+		return new CarDO(carDTO.getRating(), carDTO.getEngineType(), carDTO.getSeatCount(), carDTO.getConvertible(), carDTO.getLicensePlate(), ManufacturerMapper.makeManufacturerDO(carDTO.getManufacturer()));
 	}
 	
 	public static CarDTO makaCarDTO(CarDO carDO) {
@@ -17,7 +17,7 @@ public class CarMapper {
 				.setSeatCount(carDO.getSeatCount())
 				.setConvertible(carDO.getConvertible())
 				.setLicensePlate(carDO.getLicensePlate())
-				.setManufacturer(carDO.getManufacturer());
+				.setManufacturer(ManufacturerMapper.makeManufacturerDTO(carDO.getManufacturer()));
 		
 		return carDTOBuilder.createCarDTO();
 		

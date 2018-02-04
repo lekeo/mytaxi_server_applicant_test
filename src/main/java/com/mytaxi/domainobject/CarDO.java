@@ -8,12 +8,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.mytaxi.domainvalue.OnlineStatus;
 import com.mytaxi.domainvalue.UsageStatus;
 
 @Entity
@@ -46,9 +47,9 @@ public class CarDO {
 	@NotNull(message = "licensePlate can not be null!")
 	private String licensePlate;
 
-	@Column(nullable = false)
-	@NotNull(message = "manufacturer can not be null!")
-	private String manufacturer;
+	@ManyToOne
+    @JoinColumn(name = "manufacturer", nullable = false)
+    private ManufacturerDO manufacturer;
 
 	@Column(nullable = false)
 	private Boolean deleted = false;
@@ -61,11 +62,11 @@ public class CarDO {
 	@Column
 	private UsageStatus usageStatus = UsageStatus.AVAILABLE;
 
-	private CarDO() {
+	public CarDO() {
 	}
 
 	public CarDO(Float rating, String engineType, Integer seatCount, Boolean convertible, String licensePlate,
-			String manufacturer) {
+			ManufacturerDO manufacturer) {
 		this.rating = rating;
 		this.engineType = engineType;
 		this.seatCount = seatCount;
@@ -140,11 +141,11 @@ public class CarDO {
 		this.dateUpdated = ZonedDateTime.now();
 	}
 
-	public String getManufacturer() {
+	public ManufacturerDO getManufacturer() {
 		return manufacturer;
 	}
 
-	public void setManufacturer(String manufacturer) {
+	public void setManufacturer(ManufacturerDO manufacturer) {
 		this.manufacturer = manufacturer;
 		this.dateUpdated = ZonedDateTime.now();
 	}

@@ -13,7 +13,9 @@ import javax.persistence.UniqueConstraint;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "manufacturer")
+@Table(name = "manufacturer",
+uniqueConstraints = @UniqueConstraint(name = "uc_manufacturerName", columnNames = {"manufacturerName"})
+)
 public class ManufacturerDO {
 	
 	@Id
@@ -28,8 +30,15 @@ public class ManufacturerDO {
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	private ZonedDateTime dateUpdated = ZonedDateTime.now();
 
-	@Column
+	@Column(nullable = false)
 	private String manufacturerName;
+	
+	public ManufacturerDO() {
+	}
+	
+	public ManufacturerDO(String manufacturerName) {
+		this.manufacturerName = manufacturerName;
+	}
 
 	public Long getId() {
 		return id;
