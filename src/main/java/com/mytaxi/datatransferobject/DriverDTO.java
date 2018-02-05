@@ -7,104 +7,92 @@ import com.mytaxi.domainvalue.GeoCoordinate;
 import javax.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DriverDTO
-{
-    @JsonIgnore
-    private Long id;
+public class DriverDTO {
+	@JsonIgnore
+	private Long id;
 
-    @NotNull(message = "Username can not be null!")
-    private String username;
+	@NotNull(message = "Username can not be null!")
+	private String username;
 
-    @NotNull(message = "Password can not be null!")
-    private String password;
+	@NotNull(message = "Password can not be null!")
+	private String password;
 
-    private GeoCoordinate coordinate;
+	private GeoCoordinate coordinate;
 
+	@JsonProperty("car")
+	private CarDTO carDTO;
 
-    private DriverDTO()
-    {
-    }
+	private DriverDTO() {
+	}
 
+	private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate, CarDTO carDTO) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.coordinate = coordinate;
+		this.carDTO = carDTO;
+	}
 
-    private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate)
-    {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.coordinate = coordinate;
-    }
+	public static DriverDTOBuilder newBuilder() {
+		return new DriverDTOBuilder();
+	}
 
+	@JsonProperty
+	public Long getId() {
+		return id;
+	}
 
-    public static DriverDTOBuilder newBuilder()
-    {
-        return new DriverDTOBuilder();
-    }
+	public String getUsername() {
+		return username;
+	}
 
+	public String getPassword() {
+		return password;
+	}
 
-    @JsonProperty
-    public Long getId()
-    {
-        return id;
-    }
+	public GeoCoordinate getCoordinate() {
+		return coordinate;
+	}
 
+	private CarDTO getCarDTO() {
+		return carDTO;
+	}
 
-    public String getUsername()
-    {
-        return username;
-    }
+	public static class DriverDTOBuilder {
+		private Long id;
+		private String username;
+		private String password;
+		private GeoCoordinate coordinate;
+		private CarDTO carDTO;
 
+		public DriverDTOBuilder setId(Long id) {
+			this.id = id;
+			return this;
+		}
 
-    public String getPassword()
-    {
-        return password;
-    }
+		public DriverDTOBuilder setUsername(String username) {
+			this.username = username;
+			return this;
+		}
 
+		public DriverDTOBuilder setPassword(String password) {
+			this.password = password;
+			return this;
+		}
 
-    public GeoCoordinate getCoordinate()
-    {
-        return coordinate;
-    }
+		public DriverDTOBuilder setCoordinate(GeoCoordinate coordinate) {
+			this.coordinate = coordinate;
+			return this;
+		}
+		
+		public DriverDTOBuilder setCarDTO(CarDTO carDTO) {
+			this.carDTO = carDTO;
+			return this;
+		}
 
-    public static class DriverDTOBuilder
-    {
-        private Long id;
-        private String username;
-        private String password;
-        private GeoCoordinate coordinate;
+		public DriverDTO createDriverDTO() {
+			return new DriverDTO(id, username, password, coordinate, carDTO);
+		}
 
-
-        public DriverDTOBuilder setId(Long id)
-        {
-            this.id = id;
-            return this;
-        }
-
-
-        public DriverDTOBuilder setUsername(String username)
-        {
-            this.username = username;
-            return this;
-        }
-
-
-        public DriverDTOBuilder setPassword(String password)
-        {
-            this.password = password;
-            return this;
-        }
-
-
-        public DriverDTOBuilder setCoordinate(GeoCoordinate coordinate)
-        {
-            this.coordinate = coordinate;
-            return this;
-        }
-
-
-        public DriverDTO createDriverDTO()
-        {
-            return new DriverDTO(id, username, password, coordinate);
-        }
-
-    }
+	}
 }

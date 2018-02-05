@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -47,7 +47,7 @@ public class CarDO {
 	@NotNull(message = "licensePlate can not be null!")
 	private String licensePlate;
 
-	@ManyToOne
+	@OneToOne
     @JoinColumn(name = "manufacturer", nullable = false)
     private ManufacturerDO manufacturer;
 
